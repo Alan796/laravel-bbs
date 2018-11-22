@@ -1,0 +1,16 @@
+<?php
+
+namespace App\Observers;
+
+use App\Models\DummyClass;
+
+// creating, created, updating, updated, saving,
+// saved,  deleting, deleted, restoring, restored
+
+class DummyClassObserver
+{
+    public function creating(DummyClass $dummyInstance)
+    {
+
+    }
+}
