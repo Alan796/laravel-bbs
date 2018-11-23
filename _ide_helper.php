@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.44 on 2018-11-19 15:35:10.
+ * Generated for Laravel 5.5.44 on 2018-11-23 16:57:40.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1698,7 +1698,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the currently authenticated user.
          *
-         * @return \App\Models\User|null
+         * @return \App\Models\User|null 
          * @static 
          */ 
         public static function user()
@@ -1733,7 +1733,7 @@ namespace Illuminate\Support\Facades {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param mixed $id
-         * @return \App\Models\User|false
+         * @return \App\Models\User|false 
          * @static 
          */ 
         public static function onceUsingId($id)
@@ -1797,7 +1797,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \App\Models\User|false
+         * @return \App\Models\User|false 
          * @static 
          */ 
         public static function loginUsingId($id, $remember = false)
@@ -1844,7 +1844,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\Models\User
+         * @return \App\Models\User 
          * @static 
          */ 
         public static function getLastAttempted()
@@ -1946,7 +1946,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Return the currently cached user.
          *
-         * @return \App\Models\User|null
+         * @return \App\Models\User|null 
          * @static 
          */ 
         public static function getUser()
@@ -1992,7 +1992,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the current user is authenticated.
          *
-         * @return \App\Models\User
+         * @return \App\Models\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */ 
@@ -3066,6 +3066,19 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Get a lock instance.
+         *
+         * @param string $name
+         * @param int $seconds
+         * @return \Illuminate\Contracts\Cache\Lock 
+         * @static 
+         */ 
+        public static function lock($name, $seconds = 0)
+        {
+            return \Illuminate\Cache\RedisStore::lock($name, $seconds);
+        }
+        
+        /**
          * Remove all items from the cache.
          *
          * @return bool 
@@ -3073,29 +3086,41 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function flush()
         {
-            return \Illuminate\Cache\FileStore::flush();
+            return \Illuminate\Cache\RedisStore::flush();
         }
         
         /**
-         * Get the Filesystem instance.
+         * Get the Redis connection instance.
          *
-         * @return \Illuminate\Filesystem\Filesystem 
+         * @return \Predis\ClientInterface 
          * @static 
          */ 
-        public static function getFilesystem()
+        public static function connection()
         {
-            return \Illuminate\Cache\FileStore::getFilesystem();
+            return \Illuminate\Cache\RedisStore::connection();
         }
         
         /**
-         * Get the working directory of the cache.
+         * Set the connection name to be used.
          *
-         * @return string 
+         * @param string $connection
+         * @return void 
          * @static 
          */ 
-        public static function getDirectory()
+        public static function setConnection($connection)
         {
-            return \Illuminate\Cache\FileStore::getDirectory();
+            \Illuminate\Cache\RedisStore::setConnection($connection);
+        }
+        
+        /**
+         * Get the Redis database instance.
+         *
+         * @return \Illuminate\Contracts\Redis\Factory 
+         * @static 
+         */ 
+        public static function getRedis()
+        {
+            return \Illuminate\Cache\RedisStore::getRedis();
         }
         
         /**
@@ -3106,7 +3131,19 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getPrefix()
         {
-            return \Illuminate\Cache\FileStore::getPrefix();
+            return \Illuminate\Cache\RedisStore::getPrefix();
+        }
+        
+        /**
+         * Set the cache key prefix.
+         *
+         * @param string $prefix
+         * @return void 
+         * @static 
+         */ 
+        public static function setPrefix($prefix)
+        {
+            \Illuminate\Cache\RedisStore::setPrefix($prefix);
         }
          
     }
@@ -7248,6 +7285,52 @@ namespace Illuminate\Support\Facades {
         public static function hasMacro($name)
         {
             return \Illuminate\Routing\Redirector::hasMacro($name);
+        }
+         
+    }
+
+    /**
+     * 
+     *
+     * @see \Illuminate\Redis\RedisManager
+     * @see \Illuminate\Contracts\Redis\Factory
+     */ 
+    class Redis {
+        
+        /**
+         * Get a Redis connection by name.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Redis\Connections\Connection 
+         * @static 
+         */ 
+        public static function connection($name = null)
+        {
+            return \Illuminate\Redis\RedisManager::connection($name);
+        }
+        
+        /**
+         * Resolve the given connection by name.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Redis\Connections\Connection 
+         * @throws \InvalidArgumentException
+         * @static 
+         */ 
+        public static function resolve($name = null)
+        {
+            return \Illuminate\Redis\RedisManager::resolve($name);
+        }
+        
+        /**
+         * Return all of the created connections.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function connections()
+        {
+            return \Illuminate\Redis\RedisManager::connections();
         }
          
     }
@@ -12888,6 +12971,354 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Germey\Geetest { 
+
+    /**
+     * 
+     *
+     */ 
+    class Geetest {
+        
+        /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getGeetestUrl()
+        {
+            return \Germey\Geetest\GeetestLib::getGeetestUrl();
+        }
+        
+        /**
+         * 
+         *
+         * @param string $geetestUrl
+         * @return \Germey\Geetest\GeetestLib 
+         * @static 
+         */ 
+        public static function setGeetestUrl($url)
+        {
+            return \Germey\Geetest\GeetestLib::setGeetestUrl($url);
+        }
+        
+        /**
+         * Check Geetest server is running or not.
+         *
+         * @param null $user_id
+         * @return int 
+         * @static 
+         */ 
+        public static function preProcess($param, $new_captcha = 1)
+        {
+            return \Germey\Geetest\GeetestLib::preProcess($param, $new_captcha);
+        }
+        
+        /**
+         * 
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getResponseStr()
+        {
+            return \Germey\Geetest\GeetestLib::getResponseStr();
+        }
+        
+        /**
+         * 
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getResponse()
+        {
+            return \Germey\Geetest\GeetestLib::getResponse();
+        }
+        
+        /**
+         * Get success validate result.
+         *
+         * @param $challenge
+         * @param $validate
+         * @param $seccode
+         * @param null $user_id
+         * @return int 
+         * @static 
+         */ 
+        public static function successValidate($challenge, $validate, $seccode, $param, $json_format = 1)
+        {
+            return \Germey\Geetest\GeetestLib::successValidate($challenge, $validate, $seccode, $param, $json_format);
+        }
+        
+        /**
+         * Get fail result.
+         *
+         * @param $challenge
+         * @param $validate
+         * @param $seccode
+         * @return int 
+         * @static 
+         */ 
+        public static function failValidate($challenge, $validate, $seccode)
+        {
+            return \Germey\Geetest\GeetestLib::failValidate($challenge, $validate, $seccode);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $product
+         * @static 
+         */ 
+        public static function render($product = 'float', $captchaId = 'geetest-captcha')
+        {
+            return \Germey\Geetest\GeetestLib::render($product, $captchaId);
+        }
+         
+    }
+ 
+}
+
+namespace Intervention\Image\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Image {
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = array())
+        {
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+ 
+}
+
+namespace HieuLe\Active\Facades { 
+
+    /**
+     * Active facade class
+     *
+     * @author Hieu Le
+     */ 
+    class Active {
+        
+        /**
+         * Update the route and request instances
+         *
+         * @param \Route $route
+         * @param \Request $request
+         * @static 
+         */ 
+        public static function updateInstances($route, $request)
+        {
+            return \HieuLe\Active\Active::updateInstances($route, $request);
+        }
+        
+        /**
+         * Get the active class if the condition is not falsy
+         *
+         * @param $condition
+         * @param string $activeClass
+         * @param string $inactiveClass
+         * @return string 
+         * @static 
+         */ 
+        public static function getClassIf($condition, $activeClass = 'active', $inactiveClass = '')
+        {
+            return \HieuLe\Active\Active::getClassIf($condition, $activeClass, $inactiveClass);
+        }
+        
+        /**
+         * Check if the URI of the current request matches one of the specific URIs
+         *
+         * @param array|string $uris
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkUri($uris)
+        {
+            return \HieuLe\Active\Active::checkUri($uris);
+        }
+        
+        /**
+         * Check if the current URI matches one of specific patterns (using `str_is`)
+         *
+         * @param array|string $patterns
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkUriPattern($patterns)
+        {
+            return \HieuLe\Active\Active::checkUriPattern($patterns);
+        }
+        
+        /**
+         * Check if one of the following condition is true:
+         * + the value of $value is `false` and the current querystring contain the key $key
+         * + the value of $value is not `false` and the current value of the $key key in the querystring equals to $value
+         * + the value of $value is not `false` and the current value of the $key key in the querystring is an array that
+         * contains the $value
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkQuery($key, $value)
+        {
+            return \HieuLe\Active\Active::checkQuery($key, $value);
+        }
+        
+        /**
+         * Check if the name of the current route matches one of specific values
+         *
+         * @param array|string $routeNames
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkRoute($routeNames)
+        {
+            return \HieuLe\Active\Active::checkRoute($routeNames);
+        }
+        
+        /**
+         * Check the current route name with one or some patterns
+         *
+         * @param array|string $patterns
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkRoutePattern($patterns)
+        {
+            return \HieuLe\Active\Active::checkRoutePattern($patterns);
+        }
+        
+        /**
+         * Check if the parameter of the current route has the correct value
+         *
+         * @param $param
+         * @param $value
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkRouteParam($param, $value)
+        {
+            return \HieuLe\Active\Active::checkRouteParam($param, $value);
+        }
+        
+        /**
+         * Return 'active' class if current route action match one of provided action names
+         *
+         * @param array|string $actions
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkAction($actions)
+        {
+            return \HieuLe\Active\Active::checkAction($actions);
+        }
+        
+        /**
+         * Check if the current controller class matches one of specific values
+         *
+         * @param array|string $controllers
+         * @return bool 
+         * @static 
+         */ 
+        public static function checkController($controllers)
+        {
+            return \HieuLe\Active\Active::checkController($controllers);
+        }
+        
+        /**
+         * Get the current controller method
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getMethod()
+        {
+            return \HieuLe\Active\Active::getMethod();
+        }
+        
+        /**
+         * Get the current action string
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAction()
+        {
+            return \HieuLe\Active\Active::getAction();
+        }
+        
+        /**
+         * Get the current controller class
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getController()
+        {
+            return \HieuLe\Active\Active::getController();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -15009,6 +15440,8 @@ namespace  {
 
     class Redirect extends \Illuminate\Support\Facades\Redirect {}
 
+    class Redis extends \Illuminate\Support\Facades\Redis {}
+
     class Request extends \Illuminate\Support\Facades\Request {}
 
     class Response extends \Illuminate\Support\Facades\Response {}
@@ -15026,6 +15459,12 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Geetest extends \Germey\Geetest\Geetest {}
+
+    class Image extends \Intervention\Image\Facades\Image {}
+
+    class Active extends \HieuLe\Active\Facades\Active {}
  
 }
 

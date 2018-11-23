@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Category;
+use App\Observers\UserObserver;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,10 +19,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //Carbon切换中文
-        \Carbon\Carbon::setLocale('zh');
+        Carbon::setLocale('zh');
 
         //注册模型观察者
-        \App\Models\User::observe(\App\Observers\UserObserver::class);
+        User::observe(UserObserver::class);
+
+        //视图公共数据
+        View::share('categories', Category::allFromCache());
     }
 
     /**

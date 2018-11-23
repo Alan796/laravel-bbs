@@ -21,7 +21,9 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $posts = $user->posts()->recent()->paginate(5);
+
+        return view('users.show', compact('user', 'posts'));
     }
 
 

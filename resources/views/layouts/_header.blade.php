@@ -12,13 +12,24 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                Laravel-bbs
+                laravel-bbs
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
+                <li class="{{ active_class(if_route('posts.index')) }}">
+                    <a href="{{ route('posts.index') }}">所有帖子</a>
+                </li>
+
+                @foreach ($categories as $category)
+                    <li class="{{ active_class(if_route('categories.show') && if_route_param('category', $category->id)) }}">
+                        <a href="{{ route('categories.show', $category->id) }}">
+                            {{ $category->name }}
+                        </a>
+                    </li>
+                @endforeach
 
             </ul>
 
@@ -29,6 +40,11 @@
                     <li><a href="{{ route('login') }}">登录</a></li>
                     <li><a href="{{ route('register') }}">注册</a></li>
                 @else
+                    <li>
+                        <a href="{{ route('posts.create') }}">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">
@@ -38,6 +54,12 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="{{ route('users.show', Auth::id()) }}">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    个人中心
+                                </a>
+                            </li>
                             <li>
                                 <a href="{{ route('users.edit', Auth::id()) }}">
                                     编辑资料

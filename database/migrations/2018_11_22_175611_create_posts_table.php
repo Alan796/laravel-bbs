@@ -25,7 +25,7 @@ class CreatePostsTable extends Migration
             $table->integer('dislike_count')->unsigned()->default(0)->comment('踩数');
             $table->integer('reply_count')->unsigned()->default(0)->comment('回复数');
             $table->integer('last_reply_user_id')->unsigned()->nullable()->comment('最后回复者id');
-            $table->timestamp('last_reply_at')->nullable()->comment('最后回复于');
+            $table->timestamp('last_replied_at')->nullable()->comment('最后回复于');
             $table->string('slug')->nullable()->comment('标题的英文翻译，用于SEO');
             $table->text('excerpt')->nullable()->comment('内容摘要');
             $table->timestamps();

@@ -180,6 +180,7 @@ return [
         Germey\Geetest\GeetestServiceProvider::class,
         Overtrue\LaravelLang\TranslationServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        HieuLe\Active\ActiveServiceProvider::class,
 
     ],
 
@@ -232,6 +233,7 @@ return [
 
         'Geetest' => Germey\Geetest\Geetest::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Active' => HieuLe\Active\Facades\Active::class,
     ],
 
 ];

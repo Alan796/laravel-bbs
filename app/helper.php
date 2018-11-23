@@ -7,7 +7,22 @@ function route_class()
 
 
 /**
+ * 文本去除html标签，生成摘要
+ *
+ * @param $content 文本内容
+ * @param int $length 摘要长度
+ * @return string 摘要
+ */
+function makeExcerpt($content, $length = 200)
+{
+    $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($content)));
+    return str_limit($excerpt, $length);
+}
+
+
+/**
  * 随机返回一个日期时间
+ *
  * @param mixed $years 年数或Carbon实例
  * @return \Carbon\Carbon 实例
  */

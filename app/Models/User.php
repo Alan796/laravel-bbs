@@ -23,9 +23,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = ['password', 'remember_token'];
 
 
     public function posts()
@@ -43,5 +41,11 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));
+    }
+
+
+    public function ifOwns($model, $column = 'user_id')
+    {
+        return $this->id === $model->$column;
     }
 }

@@ -23,10 +23,11 @@ Route::resource('users', 'UsersController', [
 Route::resource('categories', 'CategoriesController', [
     'only' => ['show']
 ]);
+Route::resource('posts', 'PostsController');
 
 //测试
 Route::get('/test', function() {
-    return mt_rand(0, 0);
+
 });
 
 

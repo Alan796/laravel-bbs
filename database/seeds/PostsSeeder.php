@@ -22,6 +22,6 @@ class PostsSeeder extends Seeder
             $post->category_id = array_random($category_ids);
         });
 
-        Post::insert($posts->toArray());
+        DB::table('posts')->insert($posts->toArray());
     }
 }
