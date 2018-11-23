@@ -11,6 +11,7 @@
 |
 */
 
+//首页
 Route::get('/', 'PagesController@root')->name('root');
 
 //用户
@@ -18,8 +19,14 @@ Route::resource('users', 'UsersController', [
     'only' => ['show', 'store', 'edit', 'update']
 ]);
 
+//帖子
+Route::resource('categories', 'CategoriesController', [
+    'only' => ['show']
+]);
+
+//测试
 Route::get('/test', function() {
-    return public_path('aaa/');
+    return mt_rand(0, 0);
 });
 
 
