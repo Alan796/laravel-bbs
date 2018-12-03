@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link href="{{ asset('css/simditor.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
@@ -19,7 +23,7 @@
 
                     <hr>
 
-                    @include('common.error')
+                    @include('commons._error')
 
                     @if ($post->id)
                         <form action="{{ route('posts.update', $post->id) }}" method="POST" accept-charset="UTF-8">
@@ -36,9 +40,11 @@
 
                         <div class="form-group">
                             <select class="form-control" name="category_id" required>
-                                <option value="" hidden disabled selected>请选择分类</option>
+                                <option value="" hidden disabled {{ $post->id ? '' : 'selected' }}>请选择分类</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" {{ $category->id === $post->category_id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -55,5 +61,26 @@
             </div>
         </div>
     </div>
+@endsection
 
+@section('scripts')
+    <script src="{{ asset('js/module.js') }}"></script>
+    <script src="{{ asset('js/hotkeys.js') }}"></script>
+    <script src="{{ asset('js/uploader.js') }}"></script>
+    <script src="{{ asset('js/simditor.js') }}"></script>
+    <script>
+    $(function() {
+        var editor = new Simditor({
+            textarea: $('#editor'),
+            upload: {
+                url: '{{ route('posts.image_store') }}',
+                params: { _token: '{{ csrf_token() }}' },
+                fileKey: 'image',
+                connectionCount: 3,
+                leaveConfirm: '文件上传中，关闭此页面将取消上传。'
+            },
+            pasteImage: true
+        });
+    })
+    </script>
 @endsection

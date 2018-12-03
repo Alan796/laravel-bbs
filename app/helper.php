@@ -32,3 +32,15 @@ function fakeDateTime($years = -10)
 
     return now()->addSeconds($diff >= 0 ? mt_rand(0, $diff) : mt_rand($diff, 0));
 }
+
+
+/**
+ * 返回带命名空间的模型全名
+ *
+ * @param $name 模型名
+ * @return string 模型全名
+ */
+function modelFullName($name)
+{
+    return strpos($name, '\\') === false ? 'App\Models\\'.ucfirst($name) : $name;
+}

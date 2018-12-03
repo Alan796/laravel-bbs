@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\Post;
+use App\Models\Reply;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Handlers\ImageUploader;
 use App\Http\Requests\PostRequest;
 
 class PostsController extends Controller
@@ -14,6 +16,9 @@ class PostsController extends Controller
     {
         $this->middleware('auth', [
             'except' => ['index', 'show']
+        ]);
+        $this->middleware('post.view_count', [
+            'only' => ['show']
         ]);
     }
 
@@ -26,9 +31,16 @@ class PostsController extends Controller
     }
 
 
-    public function show()
+    public function show(Post $post, Request $request)
     {
+        //有slug的强制跳转slug链接
+        if ($post->slug && $request->slug !== $post->slug) {
+            return redirect()->to($post->link(), 301);
+        }
 
+        $replies = $post->replies()->recent()->get();
+
+        return view('posts.show', compact('post', 'replies'));
     }
 
 
@@ -46,7 +58,7 @@ class PostsController extends Controller
         $post->user_id = Auth::id();
         $post->save();
 
-        return redirect()->route('posts.show', $post->id)->with('success', '发布成功');
+        return redirect()->to($post->link())->with('success', '发布成功');
     }
 
 
@@ -54,16 +66,20 @@ class PostsController extends Controller
     {
         $this->authorize('dominate', $post);
 
-        //TODO
+        $categories = Category::allFromCache();
+
+        return view('posts.create_and_edit', compact('post', 'categories'));
     }
 
 
-    public function update(Post $post)
+    public function update(Post $post, PostRequest $request)
     {
         $this->authorize('dominate', $post);
 
-        //TODO
+        $post->fill($request->all());
+        $post->save();
 
+        return redirect()->to($post->link())->with('success', '修改成功');
     }
 
 
@@ -78,5 +94,25 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect()->route('posts.index')->with('success', '帖子已删除');
+    }
+
+
+    public function imageStore(Request $request, ImageUploader $imageUploader)
+    {
+        $this->validate($request, [
+            'image' => 'required|mimes:jpg,jpeg,bmp,png,gif',
+        ]);
+
+        $result = $imageUploader->save($request->image, 'posts', Auth::id(), 1024, 1024);
+
+        return $result ? [
+            'success' => true,
+            'msg' => '上传成功',
+            'file_path' => $result['path'],
+        ] : [
+            'success' => false,
+            'msg' => '上传失败',
+            'file_path' => '',
+        ];
     }
 }

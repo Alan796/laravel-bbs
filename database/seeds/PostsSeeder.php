@@ -17,7 +17,9 @@ class PostsSeeder extends Seeder
         $user_ids = User::all()->pluck('id')->toArray();
         $category_ids = Category::all()->pluck('id')->toArray();
 
-        $posts = factory(Post::class, 200)->make()->each(function($post) use($user_ids, $category_ids) {
+        $posts = factory(Post::class, 200)->make()->sortBy(function($post, $key) {
+            return $post->created_at;
+        })->each(function($post) use($user_ids, $category_ids) {
             $post->user_id = array_random($user_ids);
             $post->category_id = array_random($category_ids);
         });

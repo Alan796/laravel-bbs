@@ -55,11 +55,11 @@ class UsersController extends Controller
     public function validateEmail($token, $email)
     {
         if (!$cacheData = \Cache::get($token)) {
-            return $this->responseWithMessage('danger', '验证已过期');
+            return $this->respondWithMessage('danger', '验证已过期');
         }
 
         if (!hash_equals($cacheData['email'], $email)) {
-            return $this->responseWithMessage('danger', '验证错误');
+            return $this->respondWithMessage('danger', '验证错误');
         }
 
         return view('users.complete_info', ['token' => $token, 'email' => $cacheData['email']]);
@@ -69,11 +69,11 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
         if (!$cacheData = \Cache::get($request->token)) {
-            return $this->responseWithMessage('danger', '验证已过期');
+            return $this->respondWithMessage('danger', '验证已过期');
         }
 
         if (!hash_equals($cacheData['email'], $request->email)) {
-            return $this->responseWithMessage('danger', '验证错误');
+            return $this->respondWithMessage('danger', '验证错误');
         }
 
         \Cache::forget($request->token);
@@ -86,7 +86,7 @@ class UsersController extends Controller
 
         \Auth::login($user);
 
-        return $this->responseWithMessage('success', '注册成功');
+        return $this->respondWithMessage('success', '注册成功');
     }
 
 

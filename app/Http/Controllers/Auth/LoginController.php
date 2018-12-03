@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -18,14 +20,12 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers {
+        showLoginForm as laravelShowLoginForm;
+        logout as laravelLogout;
+    }
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/';
+    protected $redirectToSessionKey = 'redirect_to';
 
     /**
      * Create a new controller instance.
@@ -35,5 +35,33 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+
+    public function showLoginForm(Request $request)
+    {
+        if (!$request->session()->has($this->redirectToSessionKey)) {
+            $request->session()->put($this->redirectToSessionKey, URL::previous());
+        }
+
+        return $this->laravelShowLoginForm();
+    }
+
+
+    public function redirectTo()
+    {
+        $request = app(Request::class);
+        $redirectTo = $request->session()->get($this->redirectToSessionKey);
+        $request->session()->forget($this->redirectToSessionKey);
+
+        return $redirectTo;
+    }
+
+
+    public function logout(Request $request)
+    {
+        $this->laravelLogout($request);
+
+        return redirect(URL::previous());
     }
 }

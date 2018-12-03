@@ -93,6 +93,8 @@ return [
 
     'fallback_locale' => 'en',
 
+    'faker_locale' => 'zh_CN',
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key
@@ -181,6 +183,7 @@ return [
         Overtrue\LaravelLang\TranslationServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
+        Baum\Providers\BaumServiceProvider::class,
 
     ],
 

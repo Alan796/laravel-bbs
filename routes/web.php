@@ -1,4 +1,6 @@
 <?php
+use App\Models\User;
+use App\Models\Reply;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,15 +21,23 @@ Route::resource('users', 'UsersController', [
     'only' => ['show', 'store', 'edit', 'update']
 ]);
 
-//帖子
+//帖子和回复
 Route::resource('categories', 'CategoriesController', [
     'only' => ['show']
 ]);
-Route::resource('posts', 'PostsController');
+Route::resource('posts', 'PostsController', [
+    'except' => ['show']
+]);
+Route::get('posts/{post}/{slug?}', 'PostsController@show')->name('posts.show');
+Route::post('posts/image', 'PostsController@imageStore')->name('posts.image_store');    //发帖时上传图片
+Route::resource('replies', 'RepliesController', [
+    'only' => ['show', 'store', 'destroy']
+]);
+
 
 //测试
 Route::get('/test', function() {
-
+    User::find(1)->follow([1, 2, 3, 4]);
 });
 
 
@@ -59,4 +69,6 @@ Route::group([
     //登出
     Route::delete('logout', 'Auth\LoginController@logout')->name('logout');
 
+    //点赞
+    Route::post('likes', 'LikesController@storeOrDestroy')->name('likes.storeOrDestroy')->middleware('auth');
 });

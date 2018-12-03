@@ -23,6 +23,6 @@ class PostPolicy
 
     public function dominate(User $currentUser, Post $post)
     {
-        return $currentUser->ifOwns($post);
+        return $currentUser->isAuthorOf($post);
     }
 }

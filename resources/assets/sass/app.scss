@@ -7,6 +7,9 @@
 /* universal */
 body {
   font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+  .link {
+    cursor: pointer;
+  }
 }
 
 /* header */
@@ -105,6 +108,14 @@ body {
   .pagination {
     margin: 12px 0;
   }
+
+  .meta {
+    font-size: .9em;
+    color: #b3b3b3;
+  }
+  .reply-content {
+    margin: 6px 0;
+  }
 }
 
 /* Post Index Page */
@@ -136,4 +147,52 @@ body {
       border-top: 1px solid #dcebf5;
     }
   }
+}
+
+/* Post Show Page */
+.posts-show-page {
+  .post-content {
+    position: relative;
+  }
+  .post-label-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    background-color: gainsboro;
+  }
+  .post-label-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 5px;
+    background-color: gainsboro;
+  }
+  .post-good {
+    color: goldenrod;
+  }
+}
+
+.post-reply {
+  hr {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .meta {
+    font-size: .9em;
+    color: #b3b3b3;
+  }
+}
+
+#repliee-label {
+  float: left;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 3px;
+  user-select: none;
 }

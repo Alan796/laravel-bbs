@@ -12,7 +12,11 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 50)->create();
+        $users = factory(User::class, 50)->make()->sortBy(function($user, $key) {
+            return $user->created_at;
+        });
+
+        DB::table('users')->insert($users->makeVisible(['password', 'remember_token'])->toArray());
 
         $user_1 = User::find(1);
         $user_1->name = 'Alan';

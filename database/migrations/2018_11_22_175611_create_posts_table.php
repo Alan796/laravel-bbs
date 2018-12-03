@@ -20,9 +20,11 @@ class CreatePostsTable extends Migration
             $table->integer('user_id')->unsigned()->index()->comment('作者id');
             $table->integer('category_id')->unsigned()->index()->comment('分类id');
             $table->boolean('is_good')->default(false)->comment('是否精品贴');
+            $table->timestamp('set_good_at')->nullable()->comment('成为精品帖的时间');
+            $table->string('set_good_by')->nullable()->comment('由谁设置为精品贴');
+            $table->string('set_good_for')->nullable()->comment('成为精品贴的原因');
             $table->integer('view_count')->unsigned()->default(0)->comment('浏览数');
             $table->integer('like_count')->unsigned()->default(0)->comment('点赞数');
-            $table->integer('dislike_count')->unsigned()->default(0)->comment('踩数');
             $table->integer('reply_count')->unsigned()->default(0)->comment('回复数');
             $table->integer('last_reply_user_id')->unsigned()->nullable()->comment('最后回复者id');
             $table->timestamp('last_replied_at')->nullable()->comment('最后回复于');

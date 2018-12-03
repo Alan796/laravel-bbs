@@ -67,7 +67,7 @@
                             </li>
 
                             <li>
-                                <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <a href="javascript:;" onclick="$('#logout-form').submit();">
                                     退出登录
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

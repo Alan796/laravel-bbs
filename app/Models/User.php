@@ -32,6 +32,54 @@ class User extends Authenticatable
     }
 
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'followee_id', 'follower_id')->withTimestamps();
+    }
+
+
+    public function followees()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followee_id')->withTimestamps();
+    }
+
+
+    public function follow($user_ids)
+    {
+        if (!is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+
+        $user_ids = array_diff($user_ids, [$this->id]);   //不可关注自己
+
+        $this->followees()->syncWithoutDetaching($user_ids);
+    }
+
+
+    public function unfollow($user_ids)
+    {
+        if (!is_array($user_ids)) {
+            $user_ids = compact('user_ids');
+        }
+
+        $user_ids = array_diff($user_ids, [$this->id]);   //不可取关自己
+
+        $this->followees()->detach($user_ids);
+    }
+
+
+    public function isFollowing($user_id)
+    {
+        return $this->followees()->contains($user_id);
+    }
+
+
     public function sendRegisterNotification($token, $email, $expireAt)
     {
         $this->fill(['email' => $email])->notify(new Register($token, $email, $expireAt));
@@ -44,7 +92,7 @@ class User extends Authenticatable
     }
 
 
-    public function ifOwns($model, $column = 'user_id')
+    public function isAuthorOf($model, $column = 'user_id')
     {
         return $this->id === $model->$column;
     }

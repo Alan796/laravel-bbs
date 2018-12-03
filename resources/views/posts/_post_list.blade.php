@@ -16,7 +16,7 @@
                             {{ $post->category->name }}
                         </a>
                         <span> • </span>
-                        <a href="{{ route('posts.show', $post->id) }}" title="{{ $post->title }}">
+                        <a href="{{ $post->link() }}" title="{{ $post->title }}">
                             {{ $post->title }}
                         </a>
 
@@ -25,7 +25,7 @@
                             <span class="text-danger">精品</span>
                         @endif
 
-                        <a class="pull-right" href="{{ route('posts.show', $post->id) }}" >
+                        <a class="pull-right" href="{{ $post->link() }}" >
                             <span class="badge"> {{ $post->reply_count }} </span>
                         </a>
                     </div>

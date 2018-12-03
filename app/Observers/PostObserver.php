@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use App\Jobs\TranslateSlug;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
@@ -17,11 +18,16 @@ class PostObserver
 
     public function saving(Post $post)
     {
-        if (!$post->slug || $post->isDirty('title')) {
-            $post->slug = 'I am slug';  //TODO
-        }
-
+        $post->body = clean($post->body);
         $post->excerpt = makeExcerpt($post->body);
+    }
+
+
+    public function saved(Post $post)
+    {
+        if (!$post->slug || $post->isDirty('title')) {
+            dispatch(new TranslateSlug($post));
+        }
     }
 
 

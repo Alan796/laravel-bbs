@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use Traits\Scope;
+
     protected $fillable = ['title', 'body', 'category_id'];
 
-    protected $dates = ['last_replied_at', 'created_at', 'updated_at'];
+    protected $dates = ['set_good_at', 'last_replied_at', 'created_at', 'updated_at'];
 
     public function user()
     {
@@ -22,9 +24,21 @@ class Post extends Model
     }
 
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likable');
     }
 
 
@@ -52,18 +66,6 @@ class Post extends Model
 
 
     /**
-     * 最近发布
-     *
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeRecent($query)
-    {
-        return $query->orderBy('created_at', 'desc');
-    }
-
-
-    /**
      * 最近被回复
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -72,5 +74,11 @@ class Post extends Model
     public function scopeRecentReplied($query)
     {
         return $query->orderBy('last_replied_at', 'desc');
+    }
+
+
+    public function link($params = [])
+    {
+        return route('posts.show', array_merge([$this->id, $this->slug], $params));
     }
 }

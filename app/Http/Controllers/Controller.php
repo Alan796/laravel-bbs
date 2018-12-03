@@ -11,7 +11,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function responseWithMessage($status, $message)
+    protected $ajaxData = [
+        'success' => false,
+        'message' => '',
+        'data' => ''
+    ];
+
+    public function respondWithMessage($status, $message)
     {
         if (!in_array($status, ['danger', 'warning', 'success', 'info', 'status'])) {
             throw new \Exception('status 参数不正确');
@@ -19,5 +25,11 @@ class Controller extends BaseController
 
         session()->flash($status, $message);
         return redirect('/');
+    }
+
+
+    public function respondInAjax()
+    {
+        return json_encode($this->ajaxData);
     }
 }
