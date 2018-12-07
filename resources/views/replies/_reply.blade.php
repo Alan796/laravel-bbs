@@ -1,4 +1,4 @@
-<div name="reply{{ $reply->id }}" id="reply{{ $reply->id }}">
+<div class="media" name="reply{{ $reply->id }}" id="reply{{ $reply->id }}">
     <div class="avatar pull-left">
         <a href="{{ route('users.show', [$reply->user_id]) }}">
             <img class="media-object img-thumbnail" alt="{{ $reply->user->name }}" src="{{ $reply->user->avatar }}"  style="width:48px;height:48px;"/>
@@ -24,7 +24,7 @@
                 </a>
 
                 @can('destroy', $reply)
-                    <a href="javascript:;" onclick="$('#destroy-reply-form').submit();" title="删除回复" style="margin-left: 10px;">
+                    <a href="javascript:;" onclick="$('#destroy-reply-form').submit();" title="删除评论" style="margin-left: 10px;">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
                     <form id="destroy-reply-form" action="{{ route('replies.destroy', $reply->id) }}" method="POST">

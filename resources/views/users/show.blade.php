@@ -11,7 +11,20 @@
                         <div align="center">
                             <img class="thumbnail img-responsive" src="{{ $user->avatar }}" width="300px" height="300px">
                         </div>
+
                         <div class="media-body">
+                            <hr>
+                            @includeWhen(!Auth::check() || Auth::id() !== $user->id, 'users._follow_form')
+                            <div class="center-block">
+                                <ul class="nav nav-pills">
+                                    <li>
+                                        <a href="{{ route('users.followers', $user->id) }}">{{ $user->follower_count }} 个粉丝</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('users.followees', $user->id) }}">{{ $user->followee_count }} 个关注</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <hr>
                             <h4><strong>个人简介</strong></h4>
                             <p>{{ $user->introduction }}</p>
@@ -43,7 +56,7 @@
                             <a href="{{ Request::url() }}">Ta 的帖子</a>
                         </li>
                         <li class="{{ active_class(if_query('tab', 'replies')) }}">
-                            <a href="{{ Request::url() }}?tab=replies">Ta 的回复</a>
+                            <a href="{{ Request::url() }}?tab=replies">Ta 的评论</a>
                         </li>
                     </ul>
 

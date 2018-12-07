@@ -1,6 +1,8 @@
 <?php
 use App\Models\User;
 use App\Models\Reply;
+use App\Models\Follow;
+use Illuminate\Notifications\DatabaseNotification as Notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,10 @@ Route::resource('users', 'UsersController', [
     'only' => ['show', 'store', 'edit', 'update']
 ]);
 
+//粉丝和已关注用户
+Route::get('users/{user}/followers', 'FollowsController@followers')->name('users.followers');
+Route::get('users/{user}/followees', 'FollowsController@followees')->name('users.followees');
+
 //帖子和回复
 Route::resource('categories', 'CategoriesController', [
     'only' => ['show']
@@ -37,7 +43,7 @@ Route::resource('replies', 'RepliesController', [
 
 //测试
 Route::get('/test', function() {
-    User::find(1)->follow([1, 2, 3, 4]);
+    User::find(14)->follow(1);
 });
 
 
@@ -69,6 +75,15 @@ Route::group([
     //登出
     Route::delete('logout', 'Auth\LoginController@logout')->name('logout');
 
+    //关注和取关
+    Route::post('users/follow/{user}', 'FollowsController@store')->name('follows.store');
+    Route::delete('users/follow/{user}', 'FollowsController@destroy')->name('follows.destroy');
+
     //点赞
     Route::post('likes', 'LikesController@storeOrDestroy')->name('likes.storeOrDestroy')->middleware('auth');
+
+    //通知
+    Route::resource('notifications', 'NotificationsController', [
+        'only' => ['index']
+    ]);
 });

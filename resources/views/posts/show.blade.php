@@ -81,12 +81,12 @@
 
             </div>
 
-            {{-- 用户回复列表 --}}
+            {{-- 用户评论列表 --}}
             <div class="panel panel-default post-reply">
                 <div class="panel-body">
-                    {{--回复框--}}
+                    {{--评论框--}}
                     @includeWhen(Auth::check(), 'posts._reply_box', ['post' => $post])
-                    {{--回复列表--}}
+                    {{--评论列表--}}
                     @include('posts._reply_list', ['replies' => $replies])
                 </div>
             </div>
@@ -98,7 +98,7 @@
 
 @section('scripts')
 
-    @include('scripts.functions.like')
+    @include('scripts.functions._like')
 
     @include('scripts._like_post')
 

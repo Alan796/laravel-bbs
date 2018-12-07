@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-11-27 18:40:47.
+    * Generated on 2018-12-04 14:28:13.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -41,6 +41,8 @@ namespace PHPSTORM_META {
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
+        'command.baum' => \Baum\Console\BaumCommand::class,
+        'command.baum.install' => \Baum\Console\InstallCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
         'command.cache.forget' => \Illuminate\Cache\Console\ForgetCommand::class,
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
@@ -178,6 +180,8 @@ namespace PHPSTORM_META {
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
+        'command.baum' => \Baum\Console\BaumCommand::class,
+        'command.baum.install' => \Baum\Console\InstallCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
         'command.cache.forget' => \Illuminate\Cache\Console\ForgetCommand::class,
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
@@ -315,6 +319,8 @@ namespace PHPSTORM_META {
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
+        'command.baum' => \Baum\Console\BaumCommand::class,
+        'command.baum.install' => \Baum\Console\InstallCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
         'command.cache.forget' => \Illuminate\Cache\Console\ForgetCommand::class,
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
@@ -452,6 +458,8 @@ namespace PHPSTORM_META {
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
+        'command.baum' => \Baum\Console\BaumCommand::class,
+        'command.baum.install' => \Baum\Console\InstallCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
         'command.cache.forget' => \Illuminate\Cache\Console\ForgetCommand::class,
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
@@ -589,6 +597,8 @@ namespace PHPSTORM_META {
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
+        'command.baum' => \Baum\Console\BaumCommand::class,
+        'command.baum.install' => \Baum\Console\InstallCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
         'command.cache.forget' => \Illuminate\Cache\Console\ForgetCommand::class,
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
@@ -726,6 +736,8 @@ namespace PHPSTORM_META {
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
+        'command.baum' => \Baum\Console\BaumCommand::class,
+        'command.baum.install' => \Baum\Console\InstallCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
         'command.cache.forget' => \Illuminate\Cache\Console\ForgetCommand::class,
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
@@ -863,6 +875,8 @@ namespace PHPSTORM_META {
         'command.app.name' => \Illuminate\Foundation\Console\AppNameCommand::class,
         'command.auth.make' => \Illuminate\Auth\Console\AuthMakeCommand::class,
         'command.auth.resets.clear' => \Illuminate\Auth\Console\ClearResetsCommand::class,
+        'command.baum' => \Baum\Console\BaumCommand::class,
+        'command.baum.install' => \Baum\Console\InstallCommand::class,
         'command.cache.clear' => \Illuminate\Cache\Console\ClearCommand::class,
         'command.cache.forget' => \Illuminate\Cache\Console\ForgetCommand::class,
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,

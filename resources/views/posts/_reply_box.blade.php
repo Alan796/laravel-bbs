@@ -17,7 +17,7 @@
         <div class="form-group">
             <textarea class="form-control" rows="3" placeholder="分享你的想法" name="body"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-share"></i>回复</button>
+        <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-share"></i>评论</button>
     </form>
 </div>
 <hr style="border: gray 1px solid;">

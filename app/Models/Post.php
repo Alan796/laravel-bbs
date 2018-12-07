@@ -66,7 +66,7 @@ class Post extends Model
 
 
     /**
-     * 最近被回复
+     * 最近被评论
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder

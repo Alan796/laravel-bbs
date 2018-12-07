@@ -49,7 +49,7 @@
                                 </a>
                                 <span> • </span>
                                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                <span class="timeago" title="最后回复于 {{ $post->last_replied_at }}">
+                                <span class="timeago" title="最后评论于 {{ $post->last_replied_at }}">
                                     {{ $post->last_replied_at->diffForHumans() }}
                                 </span>
                             </span>

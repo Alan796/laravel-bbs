@@ -5,10 +5,18 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="panel panel-default">
+                <div class="text-center" style="padding: 20px;">
+                    <a href="{{ $replies->first()->post->link() }}">
+                        {{ $replies->first()->post->title }}
+                    </a>
+                </div>
+            </div>
+
             <div class="panel panel-default post-reply">
                 <div class="panel-body">
 
-                    <div class="reply-list">
+                    <div>
                         @foreach ($replies as $reply)
                             <div class="media">
                                 @include('replies._reply', ['reply' => $reply])
@@ -27,7 +35,7 @@
 
 @section('scripts')
 
-    @include('scripts.functions.like')
+    @include('scripts.functions._like')
 
     @include('scripts._like_reply')
 

@@ -1,42 +1,47 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'LaraBBS') laravel-bbs</title>
+        <title>@yield('title', 'LaraBBS') laravel-bbs</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @yield('styles')
-</head>
+        <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-<body>
-<div id="app" class="{{ route_class() }}-page">
+        @yield('styles')
 
-    @include('layouts._header')
+    </head>
 
-    <div class="container">
+    <body>
+        <div id="app" class="{{ route_class() }}-page">
 
-        @include('commons._message')
+            @include('layouts._header')
 
-        @yield('content')
+            <div class="container">
 
-    </div>
+                @include('commons._message')
 
-    @include('layouts._footer')
-</div>
+                @yield('content')
 
-{{--@if (config('app.debug'))
-    @include('sudosu::user-selector')
-@endif--}}
+            </div>
 
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
-@yield('scripts')
-</body>
+            @include('layouts._footer')
+
+        </div>
+
+        {{--@if (config('app.debug'))
+            @include('sudosu::user-selector')
+        @endif--}}
+
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
+
+        @yield('scripts')
+
+    </body>
 </html>

@@ -17,7 +17,7 @@
                 @endif
 
                 <span class="meta pull-right">
-                    {{ $post->reply_count }} 回复
+                    {{ $post->reply_count }} 评论
                     <span> ⋅ </span>
                         {{ $post->created_at->diffForHumans() }}
                 </span>

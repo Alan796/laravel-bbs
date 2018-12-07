@@ -24,14 +24,26 @@ body {
   .dropdown-menu {
     padding: 0px;
 
-    li a {
-      border-bottom: 1px solid #d8d8d8;
-      line-height: 2.4;
+    li {
+      a {
+        border-bottom: 1px solid #d8d8d8;
+        line-height: 2.4;
 
-      .glyphicon {
-        margin-right: 8px;
+        .glyphicon {
+          margin-right: 8px;
+        }
+      }
+
+      div {
+        cursor: default;
+        line-height: 2.4;
       }
     }
+  }
+
+  .badge-tip {
+    transform: scale(0.8);
+    margin-top: -20px;
   }
 }
 
@@ -195,4 +207,23 @@ body {
   padding: 5px;
   border-radius: 3px;
   user-select: none;
+}
+
+/*followers and followees*/
+.avatar {
+  float: left;
+  margin-right: 10px;
+  max-width: 50px;
+  border-radius: 50%;
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid;
+  }
 }

@@ -32,7 +32,7 @@ class RepliesController extends Controller
         $reply->user_id = Auth::id();
         $reply->save();
 
-        return redirect()->to($reply->post->link())->with('success', '回复成功');
+        return redirect()->to($reply->post->link())->with('success', '评论成功');
     }
 
 
@@ -43,6 +43,6 @@ class RepliesController extends Controller
         $post = $reply->post;
         $reply->delete();
 
-        return redirect()->to($post->link())->with('success', '已删除回复');
+        return redirect()->to($post->link())->with('success', '已删除评论');
     }
 }

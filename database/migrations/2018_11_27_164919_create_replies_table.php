@@ -15,10 +15,10 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('body')->comment('回复内容');
-            $table->integer('user_id')->unsigned()->index()->comment('回复者');
-            $table->integer('post_id')->unsigned()->index()->comment('回复哪个帖子');
-            $table->integer('reply_id')->unsigned()->nullable()->index()->comment('回复哪个回复(etrepat/baum:parent_id)');
+            $table->string('body')->comment('评论内容');
+            $table->integer('user_id')->unsigned()->index()->comment('评论者');
+            $table->integer('post_id')->unsigned()->index()->comment('评论哪个帖子');
+            $table->integer('reply_id')->unsigned()->nullable()->index()->comment('回复哪个评论(etrepat/baum:parent_id)');
             $table->integer('left_id')->nullable()->comment('(etrepat/baum:lft)');
             $table->integer('right_id')->nullable()->comment('(etrepat/baum:rgt)');
             $table->integer('depth')->nullable()->comment('(etrepat/baum:depth)');

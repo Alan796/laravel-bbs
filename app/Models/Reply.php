@@ -34,6 +34,6 @@ class Reply extends Model
 
     public function likes()
     {
-        return $this->morphMany(Like::class);
+        return $this->morphMany(Like::class, 'likable');
     }
 }

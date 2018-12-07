@@ -8385,6 +8385,17 @@ body .link {
   margin-right: 8px;
 }
 
+.navbar-static-top .dropdown-menu li div {
+  cursor: default;
+  line-height: 2.4;
+}
+
+.navbar-static-top .badge-tip {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  margin-top: -20px;
+}
+
 /* Sticky footer styles */
 
 html {
@@ -8551,5 +8562,26 @@ body {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+/*followers and followees*/
+
+.avatar {
+  float: left;
+  margin-right: 10px;
+  max-width: 50px;
+  border-radius: 50%;
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.users li {
+  overflow: auto;
+  padding: 10px 0;
+  border-bottom: 1px solid;
 }
 

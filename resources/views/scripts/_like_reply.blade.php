@@ -1,7 +1,7 @@
 <script>
     $(function() {
 
-        /*给回复点赞*/
+        /*给评论点赞*/
         $('.like-reply-btn').click(function() {
             likable = {'id': $(this).attr('likable-id'), 'type': $(this).attr('likable-type')};
 

@@ -25,9 +25,9 @@ class CreatePostsTable extends Migration
             $table->string('set_good_for')->nullable()->comment('成为精品贴的原因');
             $table->integer('view_count')->unsigned()->default(0)->comment('浏览数');
             $table->integer('like_count')->unsigned()->default(0)->comment('点赞数');
-            $table->integer('reply_count')->unsigned()->default(0)->comment('回复数');
-            $table->integer('last_reply_user_id')->unsigned()->nullable()->comment('最后回复者id');
-            $table->timestamp('last_replied_at')->nullable()->comment('最后回复于');
+            $table->integer('reply_count')->unsigned()->default(0)->comment('评论数');
+            $table->integer('last_reply_user_id')->unsigned()->nullable()->comment('最后评论者id');
+            $table->timestamp('last_replied_at')->nullable()->comment('最后评论于');
             $table->string('slug')->nullable()->comment('标题的英文翻译，用于SEO');
             $table->text('excerpt')->nullable()->comment('内容摘要');
             $table->timestamps();

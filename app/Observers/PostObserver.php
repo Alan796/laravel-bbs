@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Post;
 use App\Jobs\TranslateSlug;
+use App\Notifications\PostCreated;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
@@ -13,6 +14,12 @@ class PostObserver
     public function created(Post $post)
     {
         $post->category->increment('post_count');
+
+        if ($followers = $post->user->followers) {
+            $followers->each(function($follower) use($post) {
+                $follower->notify(new PostCreated($post));
+            });
+        }
     }
 
 
