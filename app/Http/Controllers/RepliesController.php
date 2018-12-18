@@ -14,6 +14,10 @@ class RepliesController extends Controller
         $this->middleware('auth', [
             'except' => ['show']
         ]);
+
+        $this->middleware('unconfined', [
+            'only' => ['store']
+        ]);
     }
 
 

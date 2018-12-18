@@ -24,8 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command('bbs:census-activists')->hourly();   //统计活跃用户
+        $schedule->command('bbs:sync-to-database')->daily()->at('23:00');    //缓存同步至数据库
+        $schedule->command('bbs:census-good-posts')->daily()->at('23:30');  //统计精品贴
     }
 
     /**

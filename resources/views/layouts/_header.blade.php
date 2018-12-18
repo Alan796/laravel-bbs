@@ -57,7 +57,7 @@
                         <ul class="dropdown-menu" role="menu" id="notification_menu">
 
                             @foreach (Auth::user()->unreadNotifications()->limit(10)->get() as $notification)
-                                @include('notifications.menu_items._'.snake_case(class_basename($notification->type)))
+                                @include('notifications._menu_item', ['$notification' => $notification])
                             @endforeach
 
                         </ul>

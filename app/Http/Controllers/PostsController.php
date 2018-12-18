@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Models\User;
 use App\Models\Post;
-use App\Models\Reply;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Handlers\ImageUploader;
@@ -17,17 +17,28 @@ class PostsController extends Controller
         $this->middleware('auth', [
             'except' => ['index', 'show']
         ]);
+
         $this->middleware('post.view_count', [
             'only' => ['show']
+        ]);
+
+        $this->middleware('permission:manage contents', [
+            'only' => ['switchGood']
+        ]);
+
+        $this->middleware('unconfined', [
+            'only' => ['create', 'store', 'edit', 'update']
         ]);
     }
 
 
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
         $posts = Post::withOrder($request->order)->paginate(30);
 
-        return view('posts.index', compact('posts'));
+        $activists = $user->getActivists();
+
+        return view('posts.index', compact('posts', 'activists'));
     }
 
 
@@ -115,4 +126,25 @@ class PostsController extends Controller
             'file_path' => '',
         ];
     }
+
+
+    public function switchGood(Post $post)
+    {
+        switch ($post->is_good) {
+            case false:
+                $post->setGood();
+                $message = '已加精';
+                break;
+
+            case true:
+                $post->revokeGood();
+                $message = '已取消精品';
+                break;
+        }
+
+        return redirect()->back()->with('success', $message);
+    }
+
+
+
 }

@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.44 on 2018-12-04 14:28:08.
+ * Generated for Laravel 5.5.44 on 2018-12-11 17:02:13.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13908,6 +13908,18 @@ namespace Mews\Purifier\Facades {
  
 }
 
+namespace Laravel\Horizon { 
+
+    /**
+     * 
+     *
+     */ 
+    class Horizon {
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -16058,6 +16070,8 @@ namespace  {
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
 
     class Purifier extends \Mews\Purifier\Facades\Purifier {}
+
+    class Horizon extends \Laravel\Horizon\Horizon {}
  
 }
 

@@ -27,6 +27,12 @@ class ReplyObserver
     }
 
 
+    public function deleting(Reply $reply)
+    {
+        $reply->likes()->delete();
+    }
+
+
     public function deleted(Reply $reply)
     {
         $reply->post->decrement('reply_count');

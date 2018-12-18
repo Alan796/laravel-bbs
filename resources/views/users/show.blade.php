@@ -3,6 +3,9 @@
 @section('title', $user->name . ' 个人中心')
 
 @section('content')
+
+    @include('commons._error')
+
     <div class="row">
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs user-info">
             <div class="panel panel-default">
@@ -14,7 +17,15 @@
 
                         <div class="media-body">
                             <hr>
+
                             @includeWhen(!Auth::check() || Auth::id() !== $user->id, 'users._follow_form')
+
+                            @include('users._confinement_status')
+
+                            @can('manage users')
+                                @include('users._confinement_form')
+                            @endcan
+
                             <div class="center-block">
                                 <ul class="nav nav-pills">
                                     <li>

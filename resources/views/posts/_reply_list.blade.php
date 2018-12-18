@@ -2,6 +2,7 @@
     $maxLength = 5;
 @endphp
 
+<hr style="border: gray 1px solid;">
 <div class="reply-list">
     @foreach ($replies as $reply)
         @if ($reply->getDepth() + 1 > $maxLength)

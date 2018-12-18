@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use Auth;
+use Carbon\Carbon;
 use App\Notifications\Followed;
 use App\Notifications\Register;
 use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles, Traits\Activist;
 
     /**
      * The attributes that are mass assignable.
@@ -56,6 +59,12 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followee_id')
             ->withTimestamps();
+    }
+
+
+    public function confinements()
+    {
+        return $this->hasMany(Confinement::class);
     }
 
 
@@ -132,5 +141,40 @@ class User extends Authenticatable
         $this->unreadNotifications->markAsRead();
         $this->notification_count = 0;
         $this->save();
+    }
+
+
+    public function isConfined()
+    {
+        return $this->confinements()->effective()->count() > 0;
+    }
+
+
+    public function confine($is_permanent = true, Carbon $expired_at = null)
+    {
+        //要么永久禁言，要么短暂禁言（提供一个终止时间）
+        if (!$is_permanent && $expired_at === null) {
+            return;
+        }
+
+        $confinement = $this->confinements()->effective()->first() ? : new Confinement;
+        $confinement->user_id = $this->id;
+        $confinement->is_permanent = $is_permanent;
+        $confinement->confined_by = Auth::id();
+        $confinement->confined_at = now()->toDateTimeString();
+        $confinement->expired_at = $expired_at ? $expired_at->toDateTimeString() : null;
+        $confinement->save();
+    }
+
+
+    public function release()
+    {
+        if (empty($confinement = $this->confinements()->effective()->first())) {
+            return;
+        }
+
+        $confinement->is_abolished = true;
+        $confinement->abolished_by = Auth::id();
+        $confinement->save();
     }
 }

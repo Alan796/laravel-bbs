@@ -8374,6 +8374,9 @@ body .link {
 
 .navbar-static-top .dropdown-menu {
   padding: 0px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 
 .navbar-static-top .dropdown-menu li a {
@@ -8388,6 +8391,7 @@ body .link {
 .navbar-static-top .dropdown-menu li div {
   cursor: default;
   line-height: 2.4;
+  padding: 0 5px;
 }
 
 .navbar-static-top .badge-tip {
@@ -8583,5 +8587,22 @@ body {
   overflow: auto;
   padding: 10px 0;
   border-bottom: 1px solid;
+}
+
+/* Sidebar */
+
+.sidebar .panel-body {
+  padding: 12px;
+}
+
+.sidebar hr {
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.sidebar .activists a.media {
+  color: #797878;
+  line-height: 26px;
+  font-size: 0.9em;
 }
 

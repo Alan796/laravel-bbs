@@ -12,7 +12,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(User::class, 50)->make()->sortBy(function($user, $key) {
+        $users = factory(User::class, 50)->make()->sortBy(function($user) {
             return $user->created_at;
         });
 
@@ -22,5 +22,9 @@ class UsersSeeder extends Seeder
         $user_1->name = 'Alan';
         $user_1->email = 'chenwu796@163.com';
         $user_1->save();
+        $user_1->assignRole('founder');
+
+        User::find(2)->assignRole('maintainer');
+        User::find(3)->assignRole('maintainer');
     }
 }

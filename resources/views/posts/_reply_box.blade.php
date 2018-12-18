@@ -20,4 +20,3 @@
         <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-share"></i>评论</button>
     </form>
 </div>
-<hr style="border: gray 1px solid;">

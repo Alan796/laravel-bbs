@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Post;
 use App\Jobs\TranslateSlug;
 use App\Notifications\PostCreated;
+use App\Notifications\PostSetGood;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
@@ -35,6 +36,17 @@ class PostObserver
         if (!$post->slug || $post->isDirty('title')) {
             dispatch(new TranslateSlug($post));
         }
+
+        if ($post->isDirty('is_good') && $post->is_good) {
+            $post->user->notify(new PostSetGood($post));
+        }
+    }
+
+
+    public function deleting(Post $post)
+    {
+        $post->replies()->delete();
+        $post->likes()->delete();
     }
 
 

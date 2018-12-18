@@ -26,5 +26,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        //仪表盘 TODO
+        \Laravel\Horizon\Horizon::auth(function($request) {
+            dd('tst');
+            //return \Auth::user()->hasRole('founder');
+        });
     }
 }

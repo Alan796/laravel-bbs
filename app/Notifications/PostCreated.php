@@ -46,6 +46,7 @@ class PostCreated extends Notification
             'user_id' => $this->user->id,
             'user_name' => $this->user->name,
             'user_avatar' => $this->user->avatar,
+            'text' => $this->user->name.' 发布了新的帖子',
         ];
     }
 }

@@ -50,17 +50,19 @@ class Liked extends Notification implements ShouldQueue
 
         switch (class_basename($this->like->likable_type)) {
             case 'Post':
-                $data['likable_name'] = '帖子';
                 $data['likable_title'] = $this->likable->title;
                 $data['likable_url'] = $this->likable->link();
+                $data['likable_name'] = '帖子';
                 break;
 
             case 'Reply':
-                $data['likable_name'] = '评论';
                 $data['likable_title'] = $this->likable->body;
                 $data['likable_url'] = route('replies.show', $this->likable->id).'#reply'.$this->likable->id;
+                $data['likable_name'] = '评论';
                 break;
         }
+
+        $data['text'] = $this->user->name.' 赞了你的'.$data['likable_name'];
 
         return $data;
     }

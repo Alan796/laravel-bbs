@@ -1,8 +1,9 @@
 <?php
+
 use App\Models\User;
+use App\Models\Post;
 use App\Models\Reply;
-use App\Models\Follow;
-use Illuminate\Notifications\DatabaseNotification as Notification;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::resource('posts', 'PostsController', [
 ]);
 Route::get('posts/{post}/{slug?}', 'PostsController@show')->name('posts.show');
 Route::post('posts/image', 'PostsController@imageStore')->name('posts.image_store');    //发帖时上传图片
+Route::patch('posts/{post}/good', 'PostsController@switchGood')->name('posts.switch_good'); //加精/取消
 Route::resource('replies', 'RepliesController', [
     'only' => ['show', 'store', 'destroy']
 ]);
@@ -43,7 +45,8 @@ Route::resource('replies', 'RepliesController', [
 
 //测试
 Route::get('/test', function() {
-    User::find(14)->follow(1);
+    //return (int) User::find(1)->isConfined();
+    return User::find(1)->unconfine();
 });
 
 
@@ -86,4 +89,8 @@ Route::group([
     Route::resource('notifications', 'NotificationsController', [
         'only' => ['index']
     ]);
+
+    //禁言
+    Route::post('users/{user}/confinements', 'ConfinementsController@store')->name('confinements.store');
+    Route::delete('users/{user}/confinements', 'ConfinementsController@destroy')->name('confinements.destroy');
 });

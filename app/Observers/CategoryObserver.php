@@ -15,6 +15,12 @@ class CategoryObserver
     }
 
 
+    public function deleting(Category $category)
+    {
+        $category->posts()->delete();
+    }
+
+
     public function deleted(Category $category)
     {
         Category::cache();

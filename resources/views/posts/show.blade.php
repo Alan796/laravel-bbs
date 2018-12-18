@@ -30,7 +30,7 @@
             <div class="panel panel-default">
                 <div class="panel-body post-content">
 
-                    @if ($post->is_good)
+                    @if($post->is_good)
                         <div class="post-label-left post-good">
                             <span class="glyphicon glyphicon-bookmark" aria-hidden="true" title="该帖子于 {{ $post->set_good_at->diffForHumans() }} 由 {{ $post->set_good_by }} 设为精品贴"></span>
                         </div>
@@ -64,12 +64,26 @@
                     @can('dominate', $post)
                         <div class="operate">
                             <hr>
+                            @can('manage contents')
+                                <a href="javascript:;" class="btn btn-default btn-xs" role="button" onclick="$('#post-switch-good-form').submit();">
+                                    @if ($post->is_good)
+                                        <i class="glyphicon glyphicon-bookmark"></i> 取消精品
+                                    @else
+                                        <i class="glyphicon glyphicon-bookmark"></i> 加精
+                                    @endif
+                                </a>
+                            @endcan
                             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-xs" role="button">
                                 <i class="glyphicon glyphicon-edit"></i> 编辑
                             </a>
-                            <a href="#" class="btn btn-default btn-xs" role="button" onclick="event.preventDefault();document.getElementById('delete-post-form').submit();">
+                            <a href="javascript:;" class="btn btn-default btn-xs" role="button" onclick="$('#delete-post-form').submit();">
                                 <i class="glyphicon glyphicon-trash"></i> 删除
                             </a>
+
+                            <form id="post-switch-good-form" action="{{ route('posts.switch_good', $post->id) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('PATCH') }}
+                            </form>
                             <form id="delete-post-form" action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
@@ -87,7 +101,7 @@
                     {{--评论框--}}
                     @includeWhen(Auth::check(), 'posts._reply_box', ['post' => $post])
                     {{--评论列表--}}
-                    @include('posts._reply_list', ['replies' => $replies])
+                    @includeWhen(count($replies), 'posts._reply_list', ['replies' => $replies])
                 </div>
             </div>
 

@@ -15,7 +15,7 @@ class PostViewCount
      */
     public function handle($request, Closure $next)
     {
-        $request->post->increment('view_count');
+        ++$request->post->view_count;
 
         return $next($request);
     }

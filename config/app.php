@@ -177,6 +177,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\HorizonServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
         Germey\Geetest\GeetestServiceProvider::class,
@@ -184,6 +185,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
     ],
 

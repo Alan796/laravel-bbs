@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -17,13 +18,13 @@ class Category extends Model
 
     public static function cache()
     {
-        return \Cache::forever('categories', $categories = self::all());
+        return Cache::forever('categories', $categories = self::all());
     }
 
 
     public static function allFromCache()
     {
-        if (!$categories = \Cache::get('categories')) {
+        if (!$categories = Cache::get('categories')) {
             $categories = self::cache();
         }
 

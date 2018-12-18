@@ -54,6 +54,7 @@ class ReplyReplied extends Notification implements ShouldQueue
             'post_url' => $this->post->link(['#reply'.$this->reply->id]),
             'parent_id' => $this->parent->id,
             'parent_body' => $this->parent->body,
+            'text' => $this->reply->user->name.' 回复了你的评论',
         ];
     }
 }

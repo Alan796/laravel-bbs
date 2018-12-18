@@ -52,25 +52,7 @@ class DatabaseNotificationCreated implements ShouldBroadcast
 
     protected function text()
     {
-        switch (class_basename($this->notification->type)) {
-            case 'Followed':
-                return '新的粉丝：'.$this->notification->data['follower_name'];
-
-            case 'PostCreated':
-                return $this->notification->data['user_name'].' 发布了新的帖子';
-
-            case 'PostReplied':
-                return $this->notification->data['replier_name'].' 评论了你的帖子';
-
-            case 'ReplyReplied':
-                return $this->notification->data['replier_name'].' 回复了你的评论';
-
-            case 'Liked':
-                return $this->notification->data['user_name'].' 赞了你的'.$this->notification->data['likable_name'];
-
-            default:
-                return '你有新的通知';
-        }
+        return $this->notification->data['text'] ? : '你有新的通知';
     }
 
 

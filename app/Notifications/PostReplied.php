@@ -50,6 +50,7 @@ class PostReplied extends Notification implements ShouldQueue
             'post_id' => $this->post->id,
             'post_title' => $this->post->title,
             'post_url' => $this->post->link(['#reply'.$this->reply->id]),
+            'text' => $this->reply->user->name.' 评论了你的帖子',
         ];
     }
 }

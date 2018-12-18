@@ -23,6 +23,7 @@ body {
 
   .dropdown-menu {
     padding: 0px;
+    width: max-content;
 
     li {
       a {
@@ -37,6 +38,7 @@ body {
       div {
         cursor: default;
         line-height: 2.4;
+        padding: 0 5px;
       }
     }
   }
@@ -225,5 +227,26 @@ body {
     overflow: auto;
     padding: 10px 0;
     border-bottom: 1px solid;
+  }
+}
+
+/* Sidebar */
+
+.sidebar {
+  .panel-body {
+    padding: 12px;
+  }
+
+  hr {
+    margin-top: 8px;
+    margin-bottom: 10px;
+  }
+
+  .activists {
+    a.media {
+      color: #797878;
+      line-height: 26px;
+      font-size: 0.9em;
+    }
   }
 }

@@ -44,6 +44,7 @@ class Followed extends Notification implements ShouldQueue
             'follower_name' => $this->follower->name,
             'follower_avatar' => $this->follower->avatar,
             'follow_at' => $this->follow->created_at,
+            'text' => '新的粉丝：'.$this->follower->name,
         ];
     }
 }

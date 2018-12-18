@@ -2,19 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Confinement;
 use Carbon\Carbon;
-use App\Models\User;
-use App\Models\Post;
-use App\Models\Like;
-use App\Models\Reply;
-use App\Models\Category;
-use Illuminate\Notifications\DatabaseNotification as Notification;
-use App\Observers\UserObserver;
-use App\Observers\PostObserver;
-use App\Observers\LikeObserver;
-use App\Observers\ReplyObserver;
-use App\Observers\CategoryObserver;
-use App\Observers\NotificationObserver;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         Carbon::setLocale('zh');
 
         //视图公共数据
-        View::share('categories', Category::allFromCache());
+        View::share('categories', \App\Models\Category::allFromCache());
 
         //注册模型观察者
         $this->registerObservers();
@@ -60,12 +49,14 @@ class AppServiceProvider extends ServiceProvider
 
     protected function registerObservers()
     {
-        User::observe(UserObserver::class);
-        Post::observe(PostObserver::class);
-        Like::observe(LikeObserver::class);
-        Reply::observe(ReplyObserver::class);
-        Category::observe(CategoryObserver::class);
-        Notification::observe(NotificationObserver::class);
+        \App\Models\User::observe(\App\Observers\UserObserver::class);
+        \App\Models\Post::observe(\App\Observers\PostObserver::class);
+        \App\Models\Like::observe(\App\Observers\LikeObserver::class);
+        \App\Models\Reply::observe(\App\Observers\ReplyObserver::class);
+        \App\Models\Category::observe(\App\Observers\CategoryObserver::class);
+        \App\Models\Confinement::observe(\App\Observers\ConfinementObserver::class);
+
+        \Illuminate\Notifications\DatabaseNotification::observe(\App\Observers\NotificationObserver::class);
     }
 
 

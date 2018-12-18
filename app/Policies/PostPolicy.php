@@ -8,7 +8,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization, Traits\ManageContents;
 
     /**
      * Create a new policy instance.

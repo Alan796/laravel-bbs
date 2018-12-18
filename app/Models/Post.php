@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use Traits\Scope;
+    use Traits\Scope, Traits\PostCachable, Traits\GoodPost;
 
     protected $fillable = ['title', 'body', 'category_id'];
 
