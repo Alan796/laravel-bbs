@@ -1,10 +1,5 @@
 <?php
 
-use App\Models\User;
-use App\Models\Post;
-use App\Models\Reply;
-use App\Models\Category;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,13 +36,6 @@ Route::patch('posts/{post}/good', 'PostsController@switchGood')->name('posts.swi
 Route::resource('replies', 'RepliesController', [
     'only' => ['show', 'store', 'destroy']
 ]);
-
-
-//测试
-Route::get('/test', function() {
-    //return (int) User::find(1)->isConfined();
-    return User::find(1)->unconfine();
-});
 
 
 //只允许游客

@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.44 on 2018-12-11 17:02:13.
+ * Generated for Laravel 5.5.44 on 2018-12-19 16:40:37.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13920,6 +13920,304 @@ namespace Laravel\Horizon {
  
 }
 
+namespace Encore\Admin\Facades { 
+
+    /**
+     * Class Admin.
+     *
+     * @method static \Encore\Admin\Grid grid($model, \Closure $callable)
+     * @method static \Encore\Admin\Form form($model, \Closure $callable)
+     * @method static \Encore\Admin\Show show($model, $callable = null)
+     * @method static \Encore\Admin\Tree tree($model, \Closure $callable = null)
+     * @method static \Encore\Admin\Layout\Content content(\Closure $callable = null)
+     * @method static \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void css($css = null)
+     * @method static \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void js($js = null)
+     * @method static \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void script($script = '')
+     * @method static \Illuminate\Contracts\Auth\Authenticatable|null user()
+     * @method static string title()
+     * @method static void navbar(\Closure $builder = null)
+     * @method static void registerAuthRoutes()
+     * @method static void extend($name, $class)
+     * @method static void disablePjax()
+     */ 
+    class Admin {
+        
+        /**
+         * Returns the long version of Laravel-admin.
+         *
+         * @return string The long application version
+         * @static 
+         */ 
+        public static function getLongVersion()
+        {
+            return \Encore\Admin\Admin::getLongVersion();
+        }
+        
+        /**
+         * 
+         *
+         * @param $model
+         * @param \Closure $callable
+         * @return \Encore\Admin\Grid 
+         * @deprecated since v1.6.1
+         * @static 
+         */ 
+        public static function grid($model, $callable)
+        {
+            return \Encore\Admin\Admin::grid($model, $callable);
+        }
+        
+        /**
+         * 
+         *
+         * @param $model
+         * @param \Closure $callable
+         * @return \Encore\Admin\Form @deprecated since v1.6.1
+         * @static 
+         */ 
+        public static function form($model, $callable)
+        {
+            return \Encore\Admin\Admin::form($model, $callable);
+        }
+        
+        /**
+         * Build a tree.
+         *
+         * @param $model
+         * @return \Encore\Admin\Tree 
+         * @static 
+         */ 
+        public static function tree($model, $callable = null)
+        {
+            return \Encore\Admin\Admin::tree($model, $callable);
+        }
+        
+        /**
+         * Build show page.
+         *
+         * @param $model
+         * @param mixed $callable
+         * @return \Encore\Admin\Show 
+         * @deprecated since v1.6.1
+         * @static 
+         */ 
+        public static function show($model, $callable = null)
+        {
+            return \Encore\Admin\Admin::show($model, $callable);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Closure $callable
+         * @return \Encore\Admin\Layout\Content 
+         * @deprecated since v1.6.1
+         * @static 
+         */ 
+        public static function content($callable = null)
+        {
+            return \Encore\Admin\Admin::content($callable);
+        }
+        
+        /**
+         * 
+         *
+         * @param $model
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getModel($model)
+        {
+            return \Encore\Admin\Admin::getModel($model);
+        }
+        
+        /**
+         * Left sider-bar menu.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function menu()
+        {
+            return \Encore\Admin\Admin::menu();
+        }
+        
+        /**
+         * Get admin title.
+         *
+         * @return \Config 
+         * @static 
+         */ 
+        public static function title()
+        {
+            return \Encore\Admin\Admin::title();
+        }
+        
+        /**
+         * Get current login user.
+         *
+         * @return mixed 
+         * @static 
+         */ 
+        public static function user()
+        {
+            return \Encore\Admin\Admin::user();
+        }
+        
+        /**
+         * Set navbar.
+         *
+         * @param \Closure|null $builder
+         * @return \Encore\Admin\Navbar 
+         * @static 
+         */ 
+        public static function navbar($builder = null)
+        {
+            return \Encore\Admin\Admin::navbar($builder);
+        }
+        
+        /**
+         * Get navbar object.
+         *
+         * @return \Encore\Admin\Widgets\Navbar 
+         * @static 
+         */ 
+        public static function getNavbar()
+        {
+            return \Encore\Admin\Admin::getNavbar();
+        }
+        
+        /**
+         * Register the auth routes.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function registerAuthRoutes()
+        {
+            \Encore\Admin\Admin::registerAuthRoutes();
+        }
+        
+        /**
+         * Extend a extension.
+         *
+         * @param string $name
+         * @param string $class
+         * @return void 
+         * @static 
+         */ 
+        public static function extend($name, $class)
+        {
+            \Encore\Admin\Admin::extend($name, $class);
+        }
+        
+        /**
+         * 
+         *
+         * @param callable $callback
+         * @static 
+         */ 
+        public static function booting($callback)
+        {
+            return \Encore\Admin\Admin::booting($callback);
+        }
+        
+        /**
+         * 
+         *
+         * @param callable $callback
+         * @static 
+         */ 
+        public static function booted($callback)
+        {
+            return \Encore\Admin\Admin::booted($callback);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function disablePjax()
+        {
+            return \Encore\Admin\Admin::disablePjax();
+        }
+        
+        /**
+         * Add css or get all css.
+         *
+         * @param null $css
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @static 
+         */ 
+        public static function css($css = null)
+        {
+            return \Encore\Admin\Admin::css($css);
+        }
+        
+        /**
+         * 
+         *
+         * @param null $css
+         * @return array|void 
+         * @static 
+         */ 
+        public static function baseCss($css = null)
+        {
+            return \Encore\Admin\Admin::baseCss($css);
+        }
+        
+        /**
+         * Add js or get all js.
+         *
+         * @param null $js
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @static 
+         */ 
+        public static function js($js = null)
+        {
+            return \Encore\Admin\Admin::js($js);
+        }
+        
+        /**
+         * 
+         *
+         * @param null $js
+         * @return array|void 
+         * @static 
+         */ 
+        public static function baseJs($js = null)
+        {
+            return \Encore\Admin\Admin::baseJs($js);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $script
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void 
+         * @static 
+         */ 
+        public static function script($script = '')
+        {
+            return \Encore\Admin\Admin::script($script);
+        }
+        
+        /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function jQuery()
+        {
+            return \Encore\Admin\Admin::jQuery();
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -16072,6 +16370,8 @@ namespace  {
     class Purifier extends \Mews\Purifier\Facades\Purifier {}
 
     class Horizon extends \Laravel\Horizon\Horizon {}
+
+    class Admin extends \Encore\Admin\Facades\Admin {}
  
 }
 
