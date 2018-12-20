@@ -13,7 +13,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles, Traits\Activist;
+    use Notifiable, HasRoles, Traits\Activist, Traits\LastActive;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +28,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    protected $dates = ['created_at', 'updated_at', 'last_active_at'];
 
 
     public function posts()
@@ -65,6 +67,12 @@ class User extends Authenticatable
     public function confinements()
     {
         return $this->hasMany(Confinement::class);
+    }
+
+
+    public function setPasswordAttribute($value)
+    {
+        return strlen($value) === 60 ? $value : bcrypt($value);
     }
 
 

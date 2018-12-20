@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class SyncToDatabase extends Command
@@ -41,6 +42,7 @@ class SyncToDatabase extends Command
         $this->info('开始同步');
 
         app(Post::class)->syncCacheToDatabase();
+        app(User::class)->syncLastActiveAtCacheToDatabase();
 
         $this->info('同步完成');
     }

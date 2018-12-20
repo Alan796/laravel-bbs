@@ -37,6 +37,10 @@ Route::resource('replies', 'RepliesController', [
     'only' => ['show', 'store', 'destroy']
 ]);
 
+Route::get('test', function () {
+    return \App\Models\User::find(1)->last_active_at;
+});
+
 
 //只允许游客
 Route::group([

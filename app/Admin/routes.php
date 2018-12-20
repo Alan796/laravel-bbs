@@ -11,5 +11,5 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index');
-    $router->resource('bbs/users', UserController::class);
+    $router->resource('bbs/users', UsersController::class);
 });

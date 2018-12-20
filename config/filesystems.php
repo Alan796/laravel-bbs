@@ -63,6 +63,12 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'admin' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/admin'),
+            'url' => env('APP_URL').'/uploads/admin',
+            'visibility' => 'public',
+        ],
     ],
 
 ];
