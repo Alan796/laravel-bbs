@@ -49,7 +49,7 @@ class PostsController extends Controller
             return redirect()->to($post->link(), 301);
         }
 
-        $replies = $post->replies()->recent()->get();
+        $replies = $post->replies()->recent()->with(['user', 'parent.user'])->get();
 
         return view('posts.show', compact('post', 'replies'));
     }

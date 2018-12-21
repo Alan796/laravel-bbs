@@ -10,7 +10,7 @@
                 @include('commons._error')
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('users.getValidateEmail') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('users.get_validate_email') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group">

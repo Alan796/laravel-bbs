@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.44 on 2018-12-19 16:40:37.
+ * Generated for Laravel 5.5.44 on 2018-12-21 11:34:30.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -16,17 +16,6 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
-     * @method static string version()
-     * @method static string basePath()
-     * @method static string environment()
-     * @method static bool isDownForMaintenance()
-     * @method static void registerConfiguredProviders()
-     * @method static \Illuminate\Support\ServiceProvider register(\Illuminate\Support\ServiceProvider|string $provider, array $options = [], bool $force = false)
-     * @method static void registerDeferredProvider(string $provider, string $service = null)
-     * @method static void boot()
-     * @method static void booting(mixed $callback)
-     * @method static void booted(mixed $callback)
-     * @method static string getCachedServicesPath()
      * @see \Illuminate\Foundation\Application
      */ 
     class App {
@@ -1367,11 +1356,6 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
-     * @method static int handle(\Symfony\Component\Console\Input\InputInterface $input, \Symfony\Component\Console\Output\OutputInterface $output = null)
-     * @method static int call(string $command, array $parameters = [], $outputBuffer = null)
-     * @method static int queue(string $command, array $parameters = [])
-     * @method static array all()
-     * @method static string output()
      * @see \Illuminate\Contracts\Console\Kernel
      */ 
     class Artisan {
@@ -1514,21 +1498,6 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
-     * @method static mixed guard(string|null $name = null)
-     * @method static void shouldUse(string $name);
-     * @method static bool check()
-     * @method static bool guest()
-     * @method static \Illuminate\Contracts\Auth\Authenticatable|null user()
-     * @method static int|null id()
-     * @method static bool validate(array $credentials = [])
-     * @method static void setUser(\Illuminate\Contracts\Auth\Authenticatable $user)
-     * @method static bool attempt(array $credentials = [], bool $remember = false)
-     * @method static bool once(array $credentials = [])
-     * @method static void login(\Illuminate\Contracts\Auth\Authenticatable $user, bool $remember = false)
-     * @method static \Illuminate\Contracts\Auth\Authenticatable loginUsingId(mixed $id, bool $remember = false)
-     * @method static bool onceUsingId(mixed $id)
-     * @method static bool viaRemember()
-     * @method static void logout()
      * @see \Illuminate\Auth\AuthManager
      * @see \Illuminate\Contracts\Auth\Factory
      * @see \Illuminate\Contracts\Auth\Guard
@@ -8685,7 +8654,7 @@ namespace Illuminate\Support\Facades {
          * Checks whether the method is cacheable or not.
          *
          * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
-         * @return bool 
+         * @return bool True for GET and HEAD, false otherwise
          * @static 
          */ 
         public static function isMethodCacheable()
@@ -9293,7 +9262,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function validate($rules, $params = null)
         {
-            return \Illuminate\Http\Request::Illuminate\Foundation\Providers\{closure}($rules, $params);
+            return \Illuminate\Http\Request::validate($rules, $params);
         }
          
     }
@@ -9524,28 +9493,13 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
-     * @method static \Illuminate\Support\Facades\Route get(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Support\Facades\Route post(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Support\Facades\Route put(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Support\Facades\Route delete(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Support\Facades\Route patch(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Support\Facades\Route options(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Support\Facades\Route any(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Support\Facades\Route match(array|string $methods, string $uri, \Closure|array|string|null $action = null)
      * @method static \Illuminate\Support\Facades\Route prefix(string  $prefix)
-     * @method static \Illuminate\Routing\PendingResourceRegistration resource(string $name, string $controller, array $options = [])
-     * @method static \Illuminate\Routing\PendingResourceRegistration apiResource(string $name, string $controller, array $options = [])
      * @method static \Illuminate\Support\Facades\Route middleware(array|string|null $middleware)
-     * @method static \Illuminate\Support\Facades\Route substituteBindings(\Illuminate\Support\Facades\Route $route)
-     * @method static void substituteImplicitBindings(\Illuminate\Support\Facades\Route $route)
      * @method static \Illuminate\Support\Facades\Route as(string $value)
      * @method static \Illuminate\Support\Facades\Route domain(string $value)
      * @method static \Illuminate\Support\Facades\Route name(string $value)
      * @method static \Illuminate\Support\Facades\Route namespace(string $value)
      * @method static \Illuminate\Support\Facades\Route where(array|string $name, string $expression = null)
-     * @method static \Illuminate\Routing\Router group(\Closure|string|array $value, \Closure|string $routes)
-     * @method static \Illuminate\Support\Facades\Route redirect(string $uri, string $destination, int $status = 301)
-     * @method static \Illuminate\Support\Facades\Route view(string $uri, string $view, array $data = [])
      * @see \Illuminate\Routing\Router
      */ 
     class Route {
@@ -10335,10 +10289,6 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
-     * @method static \Illuminate\Database\Schema\Builder create(string $table, \Closure $callback)
-     * @method static \Illuminate\Database\Schema\Builder drop(string $table)
-     * @method static \Illuminate\Database\Schema\Builder dropIfExists(string $table)
-     * @method static \Illuminate\Database\Schema\Builder table(string $table, \Closure $callback)
      * @see \Illuminate\Database\Schema\Builder
      */ 
     class Schema {
@@ -13925,20 +13875,6 @@ namespace Encore\Admin\Facades {
     /**
      * Class Admin.
      *
-     * @method static \Encore\Admin\Grid grid($model, \Closure $callable)
-     * @method static \Encore\Admin\Form form($model, \Closure $callable)
-     * @method static \Encore\Admin\Show show($model, $callable = null)
-     * @method static \Encore\Admin\Tree tree($model, \Closure $callable = null)
-     * @method static \Encore\Admin\Layout\Content content(\Closure $callable = null)
-     * @method static \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void css($css = null)
-     * @method static \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void js($js = null)
-     * @method static \Illuminate\Contracts\View\Factory|\Illuminate\View\View|void script($script = '')
-     * @method static \Illuminate\Contracts\Auth\Authenticatable|null user()
-     * @method static string title()
-     * @method static void navbar(\Closure $builder = null)
-     * @method static void registerAuthRoutes()
-     * @method static void extend($name, $class)
-     * @method static void disablePjax()
      */ 
     class Admin {
         
@@ -14212,6 +14148,333 @@ namespace Encore\Admin\Facades {
         public static function jQuery()
         {
             return \Encore\Admin\Admin::jQuery();
+        }
+         
+    }
+ 
+}
+
+namespace Dingo\Api\Facade { 
+
+    /**
+     * 
+     *
+     */ 
+    class API {
+        
+        /**
+         * Attach files to be uploaded.
+         *
+         * @param array $files
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function attach($files)
+        {
+            return \Dingo\Api\Dispatcher::attach($files);
+        }
+        
+        /**
+         * Internal request will be authenticated as the given user.
+         *
+         * @param mixed $user
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function be($user)
+        {
+            return \Dingo\Api\Dispatcher::be($user);
+        }
+        
+        /**
+         * Send a JSON payload in the request body.
+         *
+         * @param string|array $content
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function json($content)
+        {
+            return \Dingo\Api\Dispatcher::json($content);
+        }
+        
+        /**
+         * Sets the domain to be used for the request.
+         *
+         * @param string $domain
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function on($domain)
+        {
+            return \Dingo\Api\Dispatcher::on($domain);
+        }
+        
+        /**
+         * Return the raw response object once request is dispatched.
+         *
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function raw()
+        {
+            return \Dingo\Api\Dispatcher::raw();
+        }
+        
+        /**
+         * Only authenticate with the given user for a single request.
+         *
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function once()
+        {
+            return \Dingo\Api\Dispatcher::once();
+        }
+        
+        /**
+         * Set the version of the API for the next request.
+         *
+         * @param string $version
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function version($version)
+        {
+            return \Dingo\Api\Dispatcher::version($version);
+        }
+        
+        /**
+         * Set the parameters to be sent on the next API request.
+         *
+         * @param string|array $parameters
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function with($parameters)
+        {
+            return \Dingo\Api\Dispatcher::with($parameters);
+        }
+        
+        /**
+         * Set a header to be sent on the next API request.
+         *
+         * @param string $key
+         * @param string $value
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function header($key, $value)
+        {
+            return \Dingo\Api\Dispatcher::header($key, $value);
+        }
+        
+        /**
+         * Set a cookie to be sent on the next API request.
+         *
+         * @param \Symfony\Component\HttpFoundation\Cookie $cookie
+         * @return \Dingo\Api\Dispatcher 
+         * @static 
+         */ 
+        public static function cookie($cookie)
+        {
+            return \Dingo\Api\Dispatcher::cookie($cookie);
+        }
+        
+        /**
+         * Perform API GET request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @return mixed 
+         * @static 
+         */ 
+        public static function get($uri, $parameters = array())
+        {
+            return \Dingo\Api\Dispatcher::get($uri, $parameters);
+        }
+        
+        /**
+         * Perform API POST request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @param string $content
+         * @return mixed 
+         * @static 
+         */ 
+        public static function post($uri, $parameters = array(), $content = '')
+        {
+            return \Dingo\Api\Dispatcher::post($uri, $parameters, $content);
+        }
+        
+        /**
+         * Perform API PUT request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @param string $content
+         * @return mixed 
+         * @static 
+         */ 
+        public static function put($uri, $parameters = array(), $content = '')
+        {
+            return \Dingo\Api\Dispatcher::put($uri, $parameters, $content);
+        }
+        
+        /**
+         * Perform API PATCH request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @param string $content
+         * @return mixed 
+         * @static 
+         */ 
+        public static function patch($uri, $parameters = array(), $content = '')
+        {
+            return \Dingo\Api\Dispatcher::patch($uri, $parameters, $content);
+        }
+        
+        /**
+         * Perform API DELETE request.
+         *
+         * @param string $uri
+         * @param string|array $parameters
+         * @param string $content
+         * @return mixed 
+         * @static 
+         */ 
+        public static function delete($uri, $parameters = array(), $content = '')
+        {
+            return \Dingo\Api\Dispatcher::delete($uri, $parameters, $content);
+        }
+        
+        /**
+         * Get the domain.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDomain()
+        {
+            return \Dingo\Api\Dispatcher::getDomain();
+        }
+        
+        /**
+         * Get the version.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getVersion()
+        {
+            return \Dingo\Api\Dispatcher::getVersion();
+        }
+        
+        /**
+         * Get the format.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getFormat()
+        {
+            return \Dingo\Api\Dispatcher::getFormat();
+        }
+        
+        /**
+         * Get the subtype.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getSubtype()
+        {
+            return \Dingo\Api\Dispatcher::getSubtype();
+        }
+        
+        /**
+         * Set the subtype.
+         *
+         * @param string $subtype
+         * @return void 
+         * @static 
+         */ 
+        public static function setSubtype($subtype)
+        {
+            \Dingo\Api\Dispatcher::setSubtype($subtype);
+        }
+        
+        /**
+         * Get the standards tree.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getStandardsTree()
+        {
+            return \Dingo\Api\Dispatcher::getStandardsTree();
+        }
+        
+        /**
+         * Set the standards tree.
+         *
+         * @param string $standardsTree
+         * @return void 
+         * @static 
+         */ 
+        public static function setStandardsTree($standardsTree)
+        {
+            \Dingo\Api\Dispatcher::setStandardsTree($standardsTree);
+        }
+        
+        /**
+         * Set the prefix.
+         *
+         * @param string $prefix
+         * @return void 
+         * @static 
+         */ 
+        public static function setPrefix($prefix)
+        {
+            \Dingo\Api\Dispatcher::setPrefix($prefix);
+        }
+        
+        /**
+         * Set the default version.
+         *
+         * @param string $version
+         * @return void 
+         * @static 
+         */ 
+        public static function setDefaultVersion($version)
+        {
+            \Dingo\Api\Dispatcher::setDefaultVersion($version);
+        }
+        
+        /**
+         * Set the default domain.
+         *
+         * @param string $domain
+         * @return void 
+         * @static 
+         */ 
+        public static function setDefaultDomain($domain)
+        {
+            \Dingo\Api\Dispatcher::setDefaultDomain($domain);
+        }
+        
+        /**
+         * Set the default format.
+         *
+         * @param string $format
+         * @return void 
+         * @static 
+         */ 
+        public static function setDefaultFormat($format)
+        {
+            \Dingo\Api\Dispatcher::setDefaultFormat($format);
         }
          
     }
@@ -16372,6 +16635,8 @@ namespace  {
     class Horizon extends \Laravel\Horizon\Horizon {}
 
     class Admin extends \Encore\Admin\Facades\Admin {}
+
+    class API extends \Dingo\Api\Facade\API {}
  
 }
 

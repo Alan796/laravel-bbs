@@ -5,7 +5,6 @@ namespace App\Models;
 use Auth;
 use Carbon\Carbon;
 use App\Notifications\Followed;
-use App\Notifications\Register;
 use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -72,7 +71,7 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($value)
     {
-        return strlen($value) === 60 ? $value : bcrypt($value);
+        $this->attributes['password'] = strlen($value) === 60 ? $value : bcrypt($value);
     }
 
 
@@ -123,12 +122,6 @@ class User extends Authenticatable
     public function isFollowing($user_id)
     {
         return $this->followees->contains($user_id);
-    }
-
-
-    public function sendRegisterNotification($token, $email, $expireAt)
-    {
-        $this->fill(['email' => $email])->notify(new Register($token, $email, $expireAt));
     }
 
 

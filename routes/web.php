@@ -12,7 +12,7 @@
 */
 
 //首页
-Route::get('/', 'PagesController@root')->name('root');
+Route::get('/', 'PostsController@index')->name('root');
 
 //用户
 Route::resource('users', 'UsersController', [
@@ -45,11 +45,11 @@ Route::get('test', function () {
 //只允许游客
 Route::group([
     'middleware' => 'guest'
-], function() {
+], function () {
     //用户注册
     Route::get('register', 'UsersController@create')->name('register');
-    Route::post('users/get_validate_email', 'UsersController@getValidateEmail')->name('users.getValidateEmail');
-    Route::get('users/validate_email/{token}/{email}', 'UsersController@validateEmail')->name('users.validateEmail');
+    Route::post('users/get_validate_email', 'UsersController@getValidateEmail')->name('users.get_validate_email');
+    Route::get('users/validate_email/{token}/{email}', 'UsersController@validateEmail')->name('users.validate_email');
 
     //登录
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -66,7 +66,7 @@ Route::group([
 //只允许登陆用户
 Route::group([
     'middleware' => 'auth'
-], function() {
+], function () {
     //登出
     Route::delete('logout', 'Auth\LoginController@logout')->name('logout');
 

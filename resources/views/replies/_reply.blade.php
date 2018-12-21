@@ -37,7 +37,17 @@
         </div>
 
         <div class="reply-content">
+
+            @if(!empty($reply->parent))
+                <a href="{{ URL::current() }}#reply{{ $reply->parent->id }}">
+                    <span class="badge">
+                        @ {{ $reply->parent->user->name }}
+                    </span>
+                </a>
+            @endif
+
             {!! $reply->body !!}
         </div>
+
     </div>
 </div>

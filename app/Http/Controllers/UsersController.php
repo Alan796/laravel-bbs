@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\RegisterValidate;
 use App\Handlers\ImageUploader;
 use App\Http\Requests\UserRequest;
 
@@ -33,10 +34,13 @@ class UsersController extends Controller
     }
 
 
-    public function getValidateEmail(User $user, Request $request)
+    public function getValidateEmail(Request $request)
     {
         $this->validate($request, [
             'email' => 'required|string|email|unique:users',
+            'geetest_challenge' => 'geetest'
+        ], [
+            'geetest' => config('geetest.server_fail_alert'),
         ]);
 
         $token = md5(time().'_'.str_random(8));
@@ -44,7 +48,7 @@ class UsersController extends Controller
 
         \Cache::put($token, ['email' => $request->email], $expireAt);
 
-        $user->sendRegisterNotification($token, $request->email, $expireAt);
+        \Mail::to($request->email)->send(new RegisterValidate($token, $request->email, $expireAt));
 
         session()->flash('success', '邮件已发送，请登陆邮箱验证');
 

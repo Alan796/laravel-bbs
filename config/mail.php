@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', '474854859@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', '474854859@qq.com'),
         'name' => env('MAIL_FROM_NAME', 'laravel-bbs'),
     ],
 
